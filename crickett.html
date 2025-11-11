@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPL</title>
+    <link rel="stylesheet" href="ipl.css">
+    <style>
+        *{
+         font-family: 'Poppins', sans-serif;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="imgaes/ipll.png" alt="">
+        </div>
+
+
+        <!-- this is for background logo -->
+        <div class="background">
+            <img src="imgaes/csblogo.png" id="logobg" alt="">
+        </div>
+
+        <div class="heading">
+            <h1 id="head">
+                Royal Challengers Bangalore
+            </h1>
+
+            <p style="font-weight: 500;">
+            
+            </p>
+
+            <button>WATCH NOW</button>
+        </div>
+
+        <!-- this is for main image -->
+
+        <div class="image">
+            <img id="myimage" src="imgaes/rcb-removebg-preview.png" alt="">
+        </div>
+
+
+
+
+        <!-- now navbar -->
+
+        <div class="navbar">
+            <ul>
+                <li>Home</li>
+                <li>Team</li>
+                <li>Performance</li>
+                <li>Rank</li>
+            </ul>
+        </div>
+
+        <!-- html code is done -->
+
+        <!-- now jump to css code -->
+
+        <!-- one class is missing -->
+
+        <div class="empty">
+
+
+        </div>
+
+        <!-- this is for remaining teams -->
+
+        <div class="list">
+            <ol>
+                <li onclick="myFun('imgaes/image.png', 'gold', 'Chennai Super Kings', 'imgaes/csk3.png')">CSK</li>
+
+
+                <!-- first one is sucessfully working -->
+                <!-- copy and change the image name, color -->
+
+                <li onclick="myFun('imgaes/dcteam.png', 'blue', 'Delhi Capitals', 'imgaes/ddlogo.png')">DC</li>
+                <li onclick="myFun('imgaes/mi.png', 'dodgerblue', 'Mumbai Indians', 'imgaes/milogo.png')">MI</li>
+                <li onclick="myFun('imgaes/srhh.png', 'orangered', 'Sun Raise Hydrabad', 'imgaes/srhlogo.png')">SRH</li>
+                <li onclick="myFun('imgaes/kplogo.png', 'red', 'King XI Punjab', 'imgaes/kplogo.png')">PBKS</li>
+                <li onclick="myFun('imgaes/rrlogo.png', '#ff3385', 'Rajastan Royals', 'imgaes/rrlogo.png')">RR</li>
+                <li onclick="myFun('imgaes/kkrlogo.png', 'purple', 'Kolkata Knight Riders', 'imgaes/kkrlogo.png')">KKR</li>
+                <li onclick="myFun('imgaes/gt.png', '#1F2D41', 'Gujarat Titans', 'imgaes/gtlogo.png')">GT</li>
+                <li onclick="myFun('imgaes/kkrlogo.png', '#0057E2', 'Lucknow Super Giants', 'imgaes/kkrlogo.png')">LSG</li>
+            </ol>
+        </div>
+
+    </div>
+
+
+
+
+
+
+<script>
+
+    function myFun(image, colour, head, logo){
+        document.getElementById('myimage').src=image;
+        document.querySelector('.empty').style.backgroundColor=colour;
+        document.querySelector('button').style.backgroundColor=colour;
+        document.getElementById('head').innerHTML=head;
+        document.getElementById('logobg').src=logo;
+    }
+
+
+</script>
+
+
+
+
+
+
+
+
+</body>
+</html>
