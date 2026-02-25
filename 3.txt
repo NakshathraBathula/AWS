@@ -1,0 +1,92 @@
+# 🌟 Week-3: Amazon Elastic File System (EFS)
+
+---
+
+# ✅ 1️⃣ What is EFS?
+
+> Amazon EFS is a scalable, shared file storage service that can be mounted on multiple EC2 instances.
+
+✔ Fully managed
+✔ Supports multiple AZs
+✔ Uses NFS protocol (Port 2049)
+
+---
+
+# ✅ 2️⃣ Launch EC2 Instances
+
+* Launch **2 Amazon Linux EC2 instances**
+* Place in different AZs (example: 1a & 1b)
+* Security Group:
+
+  * Allow SSH (22)
+  * Allow NFS (2049)
+
+---
+
+# ✅ 3️⃣ Create EFS File System
+
+* Go to **EFS → Create file system**
+* Select same VPC
+* Ensure mount targets created in required AZs
+* Attach security group allowing NFS
+
+---
+
+# ✅ 4️⃣ Install EFS Utilities (Both EC2)
+
+
+sudo yum install -y amazon-efs-utils
+sudo mkdir /efs
+
+---
+
+# ✅ 5️⃣ Mount EFS
+
+```bash
+sudo mount -t efs -o tls fs-xxxx:/ /efs
+```
+
+Check:
+
+```bash
+df -h
+```
+
+---
+
+# ✅ 6️⃣ Verify Sharing
+
+In EC2-1:
+
+```bash
+cd /efs
+touch test.txt
+```
+
+In EC2-2:
+
+```bash
+cd /efs
+ls
+```
+
+✔ File appears → EFS working
+
+---
+
+# 🧠 Important Requirements
+
+✔ Same VPC
+✔ Mount target in each AZ
+✔ NFS port 2049 open
+✔ amazon-efs-utils installed
+
+---
+
+# ⚠️ Common Errors
+
+### Mount fails:
+
+* NFS 2049 blocked
+* No mount target in that AZ
+* amazon-efs-utils not installed

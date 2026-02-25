@@ -1,0 +1,115 @@
+---
+
+# 🌟 EC2 & RDS Experiment – Simple 4 Steps (Easy to Remember)
+
+---
+
+# ✅ 1️⃣ Create EC2 Instance (Linux)
+
+* Go to **EC2 → Launch Instance**
+* Choose **Ubuntu**
+* Select **t2.micro**
+* Create **Key Pair (.pem)**
+* Allow **SSH (Port 22)**
+* Launch
+
+👉 Purpose: Create virtual server in AWS
+
+---
+
+# ✅ 2️⃣ Connect Using SSH / PuTTY
+
+### Method 1: Direct SSH
+
+```
+ssh -i key.pem ubuntu@Public-IP
+```
+
+⚠ Before connecting:
+
+```
+chmod 400 key.pem
+```
+
+---
+
+### Method 2: PuTTY (Windows)
+
+* Convert `.pem` → `.ppk` using **PuTTYgen**
+* Open PuTTY
+* Enter:
+
+  ```
+  ubuntu@Public-IP
+  ```
+* Load `.ppk`
+* Click Open
+
+👉 Purpose: Secure remote login
+
+---
+
+# ✅ 3️⃣ Connect Using AWS CloudShell
+
+* Open CloudShell
+* Upload `.pem`
+* Run:
+
+```
+chmod 400 key.pem
+ssh -i key.pem ubuntu@Public-IP
+```
+
+👉 Purpose: Connect without local terminal
+
+---
+
+# ✅ 4️⃣ Create Windows EC2 + RDP
+
+* Launch Windows instance
+* Allow **RDP (Port 3389)**
+* Get password using `.pem`
+* Open **Remote Desktop (mstsc)**
+* Login as:
+
+  ```
+  Administrator
+  ```
+
+👉 Purpose: Access Windows server
+
+---
+
+# ✅ 5️⃣ Create RDS (Database)
+
+* Go to **RDS → Create Database**
+* Choose MySQL
+* Set username & password
+* Allow port **3306**
+* Connect from EC2
+
+👉 Purpose: Managed database service
+
+---
+
+# 🎯 One-Line Summary for Exam
+
+> Created EC2 instance using key pair, connected using SSH/PuTTY/CloudShell, launched Windows instance using RDP, and created RDS database.
+
+---
+
+# 🧠 Super Short Memory Trick
+
+Think:
+
+```
+Create → Secure Key → Connect → Windows → Database
+```
+
+or
+
+```
+EC2 → SSH → PuTTY → CloudShell → RDP → RDS
+```
+
+---

@@ -1,0 +1,163 @@
+Week-2 Experiment – All Commands & Steps in Short (Exam Ready)**
+
+---
+
+# ✅ PART 1: Create & Attach EBS Volume
+
+### 🔹 AWS Console Steps
+
+1. EC2 → **Volumes** → Create Volume
+
+   * Type: `gp3`
+   * Size: 20GB
+   * AZ: Same as EC2
+2. Select volume → **Attach Volume**
+
+   * Instance: Ubuntu
+   * Device: `/dev/xvdf`
+
+---
+
+# ✅ PART 2: Mount EBS in Ubuntu (Commands Only)
+
+### 🔹 1. Check Disk
+
+```bash
+lsblk
+```
+
+---
+
+### 🔹 2. Create Partition
+
+```bash
+sudo parted /dev/nvme1n1
+mklabel gpt
+mkpart primary xfs 0% 100%
+quit
+```
+
+```bash
+sudo partprobe
+lsblk
+```
+
+---
+
+### 🔹 3. Format
+
+```bash
+sudo mkfs.xfs /dev/nvme1n1p2
+```
+
+---
+
+### 🔹 4. Create Mount Folder
+
+```bash
+sudo mkdir -p /mnt/data
+```
+
+---
+
+### 🔹 5. Mount
+
+```bash
+sudo mount /dev/nvme1n1p2 /mnt/data
+```
+
+Check:
+
+```bash
+df -h
+```
+
+---
+
+### 🔹 6. Make Permanent
+
+Get UUID:
+
+```bash
+sudo blkid /dev/nvme1n1p2
+```
+
+Edit fstab:
+
+```bash
+sudo nano /etc/fstab
+```
+
+Add:
+
+```
+UUID=your-uuid  /mnt/data  xfs  defaults,nofail  0  0
+```
+
+Test:
+
+```bash
+sudo mount -a
+```
+
+Reboot:
+
+```bash
+sudo reboot
+```
+
+---
+
+# ✅ PART 3: Scale EC2 (Increase CPU & RAM)
+
+1. EC2 → Instances
+2. Stop instance
+3. Actions → Instance Settings → Change Instance Type
+4. Select bigger type (e.g., t2.small)
+5. Start instance
+
+---
+
+# ✅ PART 4: Snapshot & Cross Region
+
+### 🔹 Create Snapshot
+
+EC2 → Volumes → Select Volume → Create Snapshot
+
+---
+
+### 🔹 Copy Snapshot
+
+EC2 → Snapshots → Select Snapshot → Copy Snapshot
+Choose destination region
+
+---
+
+### 🔹 Create Volume from Snapshot
+
+Switch Region → Snapshots → Create Volume
+Choose AZ
+
+---
+
+### 🔹 Attach Volume
+
+Volumes → Attach Volume → Select Instance
+
+---
+
+# 🧠 Ultra Short Memory Flow
+
+```
+Create Volume → Attach → lsblk → Partition → Format → Mount → fstab  
+Stop → Change Type → Start  
+Snapshot → Copy → Create Volume → Attach
+```
+
+---
+
+# 🎯 5-Mark Short Answer
+
+> Created EBS volume, attached to EC2, partitioned and mounted it permanently using fstab. Scaled EC2 by changing instance type. Created snapshot, copied it to another region, created new volume, and attached it.
+
+---
